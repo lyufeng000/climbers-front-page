@@ -1,12 +1,13 @@
 <template>
-    <el-page-header @back="goBack" content="关于我们">
+    <el-page-header @back="goBack" content="联系我们">
     </el-page-header>
 </template>
+
 
 <script>
 export default {
     methods:{
-        goBack() {
+        goBack(){
             this.$router.back();
         }
     }
