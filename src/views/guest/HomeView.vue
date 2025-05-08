@@ -1,3 +1,4 @@
+<!--这是游客所见的页面-->
 <template>
     <el-container>
         <el-header>
@@ -10,7 +11,7 @@
                         <el-main>
                             <el-menu mode="horizontal">
                                 <el-menu-item index="1" class = "menu-item" @click="$router.push('/about')">关于我们</el-menu-item>
-                                <el-menu-item index="2" class = "menu-item" @click="$router.push('/member')">成员信息</el-menu-item>
+                                <el-menu-item index="2" class = "menu-item" @click="$router.push('/guest/member')">成员信息</el-menu-item>
                                 <el-menu-item index="3" class = "menu-item" @click="$router.push('/contact')">联系我们</el-menu-item>
                                 <el-button type="primary" size="medium" icon="el-icon-user" class="log" @click="$router.push('/logIn')">登录</el-button>
                             </el-menu>
