@@ -1,3 +1,4 @@
+<!--该页面为游客所见-->
 <template>
     <el-container>
         <el-header>
