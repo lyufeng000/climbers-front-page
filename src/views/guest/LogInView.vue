@@ -1,29 +1,3 @@
-<!--<template>
-    <el-page-header @back="goBack" content="关于我们">
-    </el-page-header>
-    <div class="login-container">
-        <el-card class="login-card">
-            <h2 class="title">用户登录</h2>
-            <el-form :model="form" :rules="rules" ref="loginForm" label-width="80px">
-                <el-form-item label="用户名" prop="username">
-                    <el-input v-model="form.username" prefix-icon="el-icon-user"></el-input>
-                </el-form-item>
-                <el-form-item label="密码" prop="password">
-                    <el-input
-                        v-model="form.password"
-                        prefix-icon="el-icon-lock"
-                        show-password
-                    ></el-input>
-                </el-form-item>
-                <el-form-item>
-                    <el-button type="primary" :loading="loading" @click="handleLogin" class="custom-button">
-                        登录
-                    </el-button>
-                </el-form-item>
-            </el-form>
-        </el-card>
-    </div>
-</template>-->
 <template>
     <div class="page-wrapper">
         <el-page-header @back="goBack" content="关于我们"></el-page-header>
@@ -36,19 +10,10 @@
                         <el-input v-model="form.username" prefix-icon="el-icon-user"></el-input>
                     </el-form-item>
                     <el-form-item label="密码" prop="password">
-                        <el-input
-                            v-model="form.password"
-                            prefix-icon="el-icon-lock"
-                            show-password
-                        ></el-input>
+                        <el-input v-model="form.password" prefix-icon="el-icon-lock" show-password></el-input>
                     </el-form-item>
                     <el-form-item>
-                        <el-button
-                            type="primary"
-                            :loading="loading"
-                            @click="handleLogin"
-                            class="custom-button"
-                        >
+                        <el-button type="primary" :loading="loading" @click="handleLogin" class="custom-button">
                             登录
                         </el-button>
                     </el-form-item>
@@ -91,17 +56,14 @@ export default {
                             this.$message.success('登录成功');
                             
                             // 统一先进入 home 页面（如果你有这个跳转需求）
-                            this.$router.push('/home');
+                            //this.$router.push('/home');
                             
                             // 根据角色进一步跳转
                             if (role == 'admin') {
-                                this.$router.push('/admin');
+                                this.$router.push('/admin/home');
                             } else if (role == 'member') {
-                                this.$router.push('/member');
-                            } else {
-                                this.$message.warning('未知角色');
+                                this.$router.push('/member/home');
                             }
-                            
                         } else {
                             this.$message.error(res.msg || '登录失败');
                         }
