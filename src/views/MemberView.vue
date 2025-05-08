@@ -26,7 +26,7 @@ export default {
     },
     methods: {
         goBack() {
-            this.$router.go(-1);
+            this.$router.back();
         },
         fetchMember() {
             axios.get("/api/members").then(response => {
