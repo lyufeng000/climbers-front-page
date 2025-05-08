@@ -1,0 +1,24 @@
+[
+  {
+    "id": 1,
+    "name": "唐轲迪",
+    "gender": "男",
+    "dept": "机械",
+    "office": "队长",
+    "email": "2129789679@qq.com",
+    "phone": "17381117617",
+    "hobby": "三角洲，打飞机",
+    "status": false
+  },
+  {
+    "id": 2,
+    "name": "李雨峰",
+    "gender": "男",
+    "dept": "软件组、硬件组、电控组、视觉组",
+    "office": "副队长",
+    "email": "lyufeng000@foxmail.com",
+    "phone": "13908228487",
+    "hobby": "OW，Smash，赛博朋克",
+    "status": true
+  }
+]
