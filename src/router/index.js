@@ -45,13 +45,19 @@ const routes = [
         //管理员成员管理页面
         path: '/admin/member',
         name: 'generateMembers',
-        component: () => import('../views/admin/GenerateView.vue')
+        component: () => import('../views/admin/ManageView.vue')
     },
     {
         //成员主页面
         path: '/member/home',
         name: 'memberHome',
         component: () => import('../views/member/HomeView.vue')
+    },
+    {
+        //队员所见成员页面
+        path: '/member/member',
+        name: 'members',
+        component: () => import('../views/member/MemberView.vue')
     }
 ]
 
