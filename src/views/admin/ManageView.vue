@@ -40,7 +40,7 @@
     </el-main>
     
     <!-- 隐藏的 Form -->
-    <el-dialog title="添加成员" :visible.sync="dialogVisible" width="1000px">
+    <el-dialog title="添加成员" :visible.sync="dialogVisible" width="1000px" :close-on-click-modal="false">
       <el-form :model="form" :rules="rules" ref="form" label-width="80px">
         <el-form-item label="ID" prop="id">
           <el-input v-model="form.id" :disabled="true" class="form"/>
@@ -130,33 +130,22 @@ export default {
       this.resetForm();
       this.dialogVisible = true;
     },
-    submitForm() {
-      if (this.isEdit) {
-        this.$refs.form.validate((valid)=>{
-          if (valid){
-            console.log('提交表单内容：', this.form);
-            this.dialogVisible = false; // ✅ 只有校验通过才关闭
-            axios.put("/api/admin/members", this.form).then(()=>{
-              this.fetchData();
-            })
-          }else {
-            console.log('❌ 表单校验失败，未提交');
-            return false;
-          }
-        })
-      }
+    submitForm(){
       this.$refs.form.validate((valid) => {
         if (valid) {
-          console.log('提交表单内容：', this.form);
-          this.dialogVisible = false; // ✅ 只有校验通过才关闭
-          axios.post('/api/admin/members',this.form).then(()=>{
-            this.fetchData();
-          })
-        } else {
-          console.log('❌ 表单校验失败，未提交');
-          return false;
+          console.log("数据填写完成");
+          // 关闭dialog
+          this.dialogVisible = false;
+          // 提交数据
+          if (this.isEdit) {
+            // 编辑
+            axios.put("/api/admin/members", this.form).then(()=>this.fetchData());
+          } else {
+            // 添加
+            axios.post("/api/admin/members", this.form).then(()=>this.fetchData());
+          }
         }
-      });
+      })
     },
     edit(row) {
       this.isEdit = true;
