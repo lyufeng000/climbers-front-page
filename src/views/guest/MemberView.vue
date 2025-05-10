@@ -9,6 +9,7 @@
             <el-table :data="memberTable" style="width: 100%" align="center">
                 <el-table-column prop="name" label="姓名" width="200" align="center"/>
                 <el-table-column prop="gender" label="性别" width="100" align="center"/>
+                <el-table-column prop="office" label="职位" width="100" align="center"/>
                 <el-table-column prop="dept" label="部门" width="250" align="center"/>
                 <el-table-column prop="hobby" label="爱好" width="300" align="center"/>
             </el-table>
@@ -30,7 +31,7 @@ export default {
             this.$router.back();
         },
         fetchMember() {
-            axios.get("/api/members").then(response => {
+            axios.get("/api/guest/members").then(response => {
                 this.memberTable = response.data.data;
             }).catch(error => {
                 this.$message.error("成员数据加载失败");
