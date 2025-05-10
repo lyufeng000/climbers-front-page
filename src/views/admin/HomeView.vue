@@ -2,6 +2,7 @@
 <template>
   <el-container>
     <el-header>
+      <!--suppress JSValidateTypes -->
       <el-image :src="logo" class="img-logo" />
     </el-header>
     <el-container>

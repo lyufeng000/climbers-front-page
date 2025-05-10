@@ -1,3 +1,5 @@
+<!--suppress ALL -->
+
 <template>
   <el-container>
     <!--    <el-page-header @back="goBack" content="成员管理"/>-->
@@ -29,7 +31,7 @@
             <el-table-column label="操作" width="150px" align="center">
               <template v-slot="scope">
                 <el-button type="text" size="medium" @click="edit(scope.row)">编辑</el-button>
-                <el-button type="text" size="medium" style="color: red">删除</el-button>
+                <el-button type="text" size="medium" style="color: red" @click="del(scope.row)">删除</el-button>
               </template>
             </el-table-column>
           </el-table>
@@ -67,7 +69,7 @@
         
         <el-form-item label="电话" prop="phone">
           <el-input v-model="form.phone" class="form">
-            <template slot="prepend">+86</template>
+            <template v-slot:prepend>+86</template>
           </el-input>
         </el-form-item>
         
@@ -89,6 +91,14 @@
         <el-button type="primary" @click="submitForm">确认</el-button>
       </div>
     </el-dialog>
+    
+    <!-- 删除确认框 -->
+    <el-dialog title="确认删除" :visible.sync="delDia" width="1000px" :close-on-click-modal="false">
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="delDia = false">取消</el-button>
+        <el-button type="primary" @click="Delete">确认</el-button>
+      </div>
+    </el-dialog>
   </el-container>
 
 </template>
@@ -102,6 +112,7 @@ export default {
       isEdit: false,
       tableData: [],
       dialogVisible: false,
+      delDia: false,
       form: {
         id: '',
         name: '',
@@ -151,6 +162,17 @@ export default {
       this.isEdit = true;
       this.form = JSON.parse(JSON.stringify(row));
       this.dialogVisible = true;
+    },
+    del(row) {
+      this.rowToDelete = row;
+      this.delDia = true;
+    },
+    Delete(){
+      axios.delete(`/api/admin/members/${this.rowToDelete.id}`).then(()=> {
+        this.fetchData();
+        this.delDia = false;
+      });
+      
     },
     fetchData() {
       axios.get('/api/admin/members').then(
